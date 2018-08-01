@@ -1,6 +1,7 @@
 require "garnet_client/version"
 require "garnet_client/utils/http_request"
 require "garnet_client/service"
+require "garnet_client/result"
 require 'HTTParty'
 require 'json'
 

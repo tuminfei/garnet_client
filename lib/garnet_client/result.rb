@@ -2,7 +2,7 @@ module GarnetClient
   class Result
     attr_accessor :raw, :msg
 
-    RESULT_SUCCESS_FLAG = '0'
+    RESULT_SUCCESS_FLAG = 0
 
 
     # TX 状态

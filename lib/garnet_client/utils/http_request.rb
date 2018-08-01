@@ -10,10 +10,16 @@ module GarnetClient
       def self.send_post(service_path, query_params)
         api_url = "#{GarnetClient.api_base_url}/#{service_path}"
         headers = GarnetClient.response_headers
-
-        response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers, timeout: 10)
-        html_result = response.body
         html_content = ''
+        html_result = ''
+        resp_err = nil
+
+        begin
+          response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers, timeout: 10)
+          html_result = response.body
+        rescue JSON::ParserError => e
+          resp_err = e
+        end
 
         if GarnetClient.debug_mode
           log_file = File.join(Rails.root, "log", "garnet_client.log")
@@ -22,6 +28,7 @@ module GarnetClient
           logger.info("URL:#{api_url.to_s}")
           logger.info("PARAMS:#{query_params.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
+          logger.info("RESPONSE_ERR:#{resp_err}")
         end
 
         begin
@@ -36,10 +43,16 @@ module GarnetClient
       def self.send_get(service_path)
         api_url = "#{GarnetClient.api_base_url}/#{service_path}"
         headers = GarnetClient.response_headers
-
-        response = HTTParty.get(api_url, :headers => headers, timeout: 10)
-        html_result = response.body
         html_content = ''
+        html_result = ''
+        resp_err = nil
+
+        begin
+          response = HTTParty.get(api_url, :headers => headers, timeout: 10)
+          html_result = response.body
+        rescue JSON::ParserError => e
+          resp_err = e
+        end
 
         if GarnetClient.debug_mode
           log_file = File.join(Rails.root, "log", "garnet_client.log")
@@ -47,6 +60,7 @@ module GarnetClient
           logger.info('--------------GarnetClient DEBUG--------------')
           logger.info("URL:#{api_url.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
+          logger.info("RESPONSE_ERR:#{resp_err}")
         end
 
         begin

@@ -11,7 +11,7 @@ module GarnetClient
         api_url = "#{GarnetClient.api_base_url}/#{service_path}"
         headers = GarnetClient.response_headers
 
-        response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers)
+        response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers, timeout: 10)
         html_result = response.body
         html_content = ''
 
@@ -37,7 +37,7 @@ module GarnetClient
         api_url = "#{GarnetClient.api_base_url}/#{service_path}"
         headers = GarnetClient.response_headers
 
-        response = HTTParty.get(api_url, :headers => headers)
+        response = HTTParty.get(api_url, :headers => headers, timeout: 10)
         html_result = response.body
         html_content = ''
 

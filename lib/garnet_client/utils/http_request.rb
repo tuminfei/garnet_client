@@ -8,7 +8,7 @@ module GarnetClient
 
       #发送请求
       def self.send_post(service_path, query_params)
-        api_url = "#{GarnetClient.api_base_url}/#{service_path}"
+        api_url = "#{GarnetClient.api_base_url}#{service_path}"
         headers = GarnetClient.response_headers
         html_content = ''
         html_result = ''
@@ -41,7 +41,7 @@ module GarnetClient
       end
 
       def self.send_get(service_path)
-        api_url = "#{GarnetClient.api_base_url}/#{service_path}"
+        api_url = "#{GarnetClient.api_base_url}#{service_path}"
         headers = GarnetClient.response_headers
         html_content = ''
         html_result = ''

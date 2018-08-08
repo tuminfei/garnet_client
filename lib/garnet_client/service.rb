@@ -24,9 +24,10 @@ module GarnetClient
     # 发送一笔转账
     def self.tx_transfer(coin_type, source_id, from, to, value)
       service_path = "/tx/#{coin_type}/transfer"
+      from_address = from.nil? ? '' : from
       post_params = {
           "source_id" => source_id,
-          "from" => from,
+          "from" => from_address,
           "to" => to,
           "value" => value
       }

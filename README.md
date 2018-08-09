@@ -35,7 +35,11 @@ GarnetClient.tenant_id = 'rnet'
 # # 商户账号
 # GarnetClient.tenant_id = 'rnet'
 ```
+Add Migration
 
+```ruby
+rails g garnet_client:migration
+```
 
 ## Development
 

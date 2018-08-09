@@ -1,7 +1,9 @@
 require "garnet_client/version"
+require "garnet_client/engine"
 require "garnet_client/utils/http_request"
 require "garnet_client/service"
 require "garnet_client/result"
+require "garnet_client/railtie" if defined?(Rails)
 require 'HTTParty'
 require 'json'
 
@@ -9,6 +11,13 @@ module GarnetClient
   @version = GarnetClient::VERSION
   @content_type = 'application/json'
   @response_headers = {}
+
+  # 接口路径
+  API_POST_NOTICE_DEPOSIT_URL = '/api/garnet_client/notify_deposits'
+  # 接口路径
+  API_POST_NOTICE_WITHDRAW_URL = '/api/garnet_client/notify_withdraws'
+  # 接口路径
+  API_POST_NOTICE_TX_URL = '/api/garnet_client/notify_transactions'
 
   class<< self
     # mer_id 商户账号

@@ -15,9 +15,12 @@ module GarnetClient
         resp_err = nil
 
         begin
-          response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers, timeout: 10)
+          response = HTTParty.post(api_url, :body =>JSON.dump(query_params), :headers => headers, timeout: 20)
           html_result = response.body
+          html_content = html_result
+          msg = JSON.parse(html_result)
         rescue JSON::ParserError => e
+          msg = JSON.parse(DEFAULT_ERR_MSG)
           resp_err = e
         end
 
@@ -28,15 +31,9 @@ module GarnetClient
           logger.info("URL:#{api_url.to_s}")
           logger.info("PARAMS:#{query_params.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
-          logger.info("RESPONSE_ERR:#{resp_err}")
+          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}")
         end
 
-        begin
-          msg = JSON.parse(html_result)
-        rescue JSON::ParserError => e
-          html_content = html_result
-          msg = JSON.parse(DEFAULT_ERR_MSG)
-        end
         return msg, html_content
       end
 
@@ -48,9 +45,12 @@ module GarnetClient
         resp_err = nil
 
         begin
-          response = HTTParty.get(api_url, :headers => headers, timeout: 10)
+          response = HTTParty.get(api_url, :headers => headers, timeout: 20)
           html_result = response.body
+          html_content = html_result
+          msg = JSON.parse(html_result)
         rescue JSON::ParserError => e
+          msg = JSON.parse(DEFAULT_ERR_MSG)
           resp_err = e
         end
 
@@ -60,15 +60,9 @@ module GarnetClient
           logger.info('--------------GarnetClient DEBUG--------------')
           logger.info("URL:#{api_url.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
-          logger.info("RESPONSE_ERR:#{resp_err}")
+          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}")
         end
 
-        begin
-          msg = JSON.parse(html_result)
-        rescue JSON::ParserError => e
-          html_content = html_result
-          msg = JSON.parse(DEFAULT_ERR_MSG)
-        end
         return msg, html_content
       end
     end

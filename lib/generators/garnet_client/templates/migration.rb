@@ -6,7 +6,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.string :from
       t.string :tx_hash
       t.string :to
-      t.integer :value
+      t.integer :value, :limit=>8
       t.integer :tx_timestamp
       t.integer :status
       t.string :notify_id
@@ -20,7 +20,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.string :from
       t.string :tx_hash
       t.string :to
-      t.integer :value
+      t.integer :value, :limit=>8
       t.integer :tx_timestamp
       t.integer :status
       t.string :notify_id
@@ -34,7 +34,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.integer :tx_timestamp
       t.string :from
       t.string :to
-      t.integer :value
+      t.integer :value, :limit=>8
       t.string :contract_address
       t.integer :status
       t.timestamps

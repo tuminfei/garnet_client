@@ -12,6 +12,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.string :notify_id
       t.string :error_msg
       t.datetime :read_at
+      t.string :read_msg
       t.timestamps
     end
 
@@ -27,6 +28,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.string :notify_id
       t.string :error_msg
       t.datetime :read_at
+      t.string :read_msg
       t.timestamps
     end
 
@@ -40,6 +42,7 @@ class CreateGarnetClientNotices < ActiveRecord::Migration
       t.string :contract_address
       t.integer :status
       t.datetime :read_at
+      t.string :read_msg
       t.timestamps
     end
   end

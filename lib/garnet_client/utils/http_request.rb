@@ -31,7 +31,7 @@ module GarnetClient
           logger.info("URL:#{api_url.to_s}")
           logger.info("PARAMS:#{query_params.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
-          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}")
+          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}") if resp_err
         end
 
         return msg, html_content
@@ -60,7 +60,7 @@ module GarnetClient
           logger.info('--------------GarnetClient DEBUG--------------')
           logger.info("URL:#{api_url.to_s}")
           logger.info("RESPONSE:#{html_result.force_encoding('UTF-8')}")
-          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}")
+          logger.info("RESPONSE_ERR:#{resp_err.message},#{resp_err.backtrace.inspect}") if resp_err
         end
 
         return msg, html_content

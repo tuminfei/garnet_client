@@ -11,6 +11,7 @@ module GarnetClient
   @version = GarnetClient::VERSION
   @content_type = 'application/json'
   @response_headers = {}
+  @debug_mode = true
 
   # 接口路径
   API_POST_NOTICE_DEPOSIT_URL = '/api/garnet_client/notify_deposits'

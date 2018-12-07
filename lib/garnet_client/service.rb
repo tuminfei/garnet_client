@@ -47,6 +47,15 @@ module GarnetClient
       msg
     end
 
+    # 查询交易hash
+    def self.tx_get_hash_info(tx_hash)
+      service_path = "/tx/in/#{tx_hash}"
+
+      # 调用查询接口
+      msg = GarnetClient::Utils::HttpRequest.send_get(service_path)
+      msg
+    end
+
     # 提交提现单
     def self.withdraw_create_order(user_id, to, coin_type, value, transfer_fee, description)
       service_path = "/withdraw/submit_order"

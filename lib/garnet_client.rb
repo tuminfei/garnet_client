@@ -23,7 +23,7 @@ module GarnetClient
   class<< self
     # mer_id 商户账号
     # mer_key 加密key
-    attr_accessor :tenant_id, :debug_mode
+    attr_accessor :tenant_id, :debug_mode, :tenant_token
     attr_reader :api_base_url
 
     def api_base_url=(url)
@@ -32,7 +32,9 @@ module GarnetClient
 
     def response_headers
       params = {"Content-Type" => @content_type,
-                "tenant-id" => @tenant_id}
+                "tenant-id" => @tenant_id,
+                "tenant-token" => @tenant_token
+      }
       response_headers = params
       response_headers
     end

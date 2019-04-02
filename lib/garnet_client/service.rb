@@ -22,14 +22,14 @@ module GarnetClient
     end
 
     # 发送一笔转账
-    def self.tx_transfer(coin_type, source_id, from, to, value, eos_memo = nil)
+    def self.tx_transfer(coin_type, source_id, from, to, actual_value, eos_memo = nil)
       service_path = "/tx/#{coin_type}/transfer"
       from_address = from.nil? ? '' : from
       post_params = {
           "source_id" => source_id,
           "from" => from_address,
           "to" => to,
-          "value" => value,
+          "actual_value" => actual_value,
           "comments" => eos_memo
       }
 

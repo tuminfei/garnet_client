@@ -21,15 +21,33 @@ module GarnetClient
       msg
     end
 
+    # 查询热钱包余额
+    def self.hot_wallet_get_balance(coin_type)
+      service_path = "/wallet/#{coin_type}/hotbalance"
+
+      # 调用查询接口
+      msg = GarnetClient::Utils::HttpRequest.send_get(service_path)
+      msg
+    end
+
+    # 查询gas余额
+    def self.wallet_gas_get_balance(coin_type)
+      service_path = "/wallet/#{coin_type}/gasbalance"
+
+      # 调用查询接口
+      msg = GarnetClient::Utils::HttpRequest.send_get(service_path)
+      msg
+    end
+
     # 发送一笔转账
-    def self.tx_transfer(coin_type, source_id, from, to, actual_value, eos_memo = nil)
+    def self.tx_transfer(coin_type, source_id, from, to, value, eos_memo = nil)
       service_path = "/tx/#{coin_type}/transfer"
       from_address = from.nil? ? '' : from
       post_params = {
           "source_id" => source_id,
           "from" => from_address,
           "to" => to,
-          "actual_value" => actual_value,
+          "value" => value,
           "comments" => eos_memo
       }
 

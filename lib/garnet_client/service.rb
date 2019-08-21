@@ -56,6 +56,21 @@ module GarnetClient
       msg
     end
 
+
+    # 批量打币 不支持EOS
+    def self.tx_transfer_batch(coin_type, source_id, details)
+      service_path = "/tx/#{coin_type}/transfer/batch"
+      post_params = {
+          "user_id" => "system",
+          "source_id" => source_id,
+          "detail" => details
+      }
+
+      # 调用查询接口
+      msg = GarnetClient::Utils::HttpRequest.send_post(service_path, post_params)
+      msg
+    end
+
     # 查询转账明细
     def self.tx_get_info(coin_type, tx_id)
       service_path = "/tx/#{coin_type}/#{tx_id}"

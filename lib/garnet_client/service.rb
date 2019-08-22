@@ -64,7 +64,7 @@ module GarnetClient
           "user_id" => "system",
           "source_id" => source_id,
           "deduct_gas_fee" => deduct_gas_fee,
-          "detail" => details
+          "details" => details
       }
 
       # 调用查询接口

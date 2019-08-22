@@ -58,11 +58,12 @@ module GarnetClient
 
 
     # 批量打币 不支持EOS
-    def self.tx_transfer_batch(coin_type, source_id, details)
+    def self.tx_transfer_batch(coin_type, source_id, deduct_gas_fee, details)
       service_path = "/tx/#{coin_type}/transfer/batch"
       post_params = {
           "user_id" => "system",
           "source_id" => source_id,
+          "deduct_gas_fee" => deduct_gas_fee,
           "detail" => details
       }
 

@@ -47,7 +47,7 @@ module GarnetClient
           "source_id" => source_id,
           "from" => from_address,
           "to" => to,
-          "value" => value,
+          "actual_value" => value,
           "comments" => eos_memo
       }
 
